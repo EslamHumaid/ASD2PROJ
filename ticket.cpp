@@ -3,15 +3,6 @@
 
 using namespace std;
 
-namespace std {
-  template<> struct hash<Ticket> {
-    size_t operator()(const Ticket& x) const
-    {
-      return x.hash_code();
-    }
-  };
-}
-
 Ticket::Ticket() {
    
     codeTicket = "";

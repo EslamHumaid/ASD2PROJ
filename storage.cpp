@@ -74,7 +74,7 @@ bagage Storage::collect(Ticket T){
       auto it = Cases.begin() + index;
       Cases.erase(it);
       emptyCases.push(index);
-      //storage.erase(T);
+      storage.erase(T);
 
       filledCases--;
     }
