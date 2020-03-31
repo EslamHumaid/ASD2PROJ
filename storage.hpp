@@ -36,7 +36,7 @@ class Storage{
 
 
     std::vector<Ticket> Cases; 
-    std::unordered_map<Ticket,t_case> storage;
+    std::unordered_map<Ticket,t_case, Ticket::ticketHasher> storage;
     size_t nbCases;
     size_t filledCases;
     size_t usingCase;

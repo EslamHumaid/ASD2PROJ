@@ -1,4 +1,5 @@
 #include "ticket.hpp"
+#include <iostream>
 
 using namespace std;
 
@@ -12,11 +13,20 @@ namespace std {
 }
 
 Ticket::Ticket() {
-    string letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    string codeTicket = "";
+   
+    codeTicket = "";
 
-    for (int i=0;i<8;i++) {
-        codeTicket = codeTicket + letters.at(rand() % letters.size());
+    
+     static const char alphanum[] =
+        "0123456789"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+
+    
+
+    for (unsigned int i = 0; i < 8 ; ++i)
+    {
+        codeTicket += alphanum[rand() % (sizeof(alphanum) - 1)];
     }
 
 

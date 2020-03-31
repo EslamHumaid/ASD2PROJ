@@ -2,6 +2,8 @@
 #include "storage.hpp"
 #include "cassert"
 #include <unordered_map>
+#include<iostream>
+
 
 using namespace std;
 
@@ -13,15 +15,10 @@ using namespace std;
         
     } t_case;
 
-namespace std {
-  template<> struct hash<Ticket> {
-    size_t operator()(const Ticket& x) const
-    {
-      return x.hash_code();
-    }
-  };
-}
 
+
+
+typedef std::pair<Ticket,t_case> t_entree;
 
 
 Storage::Storage(size_t nb){
@@ -38,9 +35,11 @@ bool Storage::isFull() const{
 }
 
 Ticket Storage::deposit(bagage bagToAdd){
+    
     assert(!isFull());
+    
     int index;
-    if(usingCase < nbCases){
+    if(usingCase <= nbCases){
         index = usingCase;
     }else{
         index = emptyCases.front();
@@ -51,28 +50,35 @@ Ticket Storage::deposit(bagage bagToAdd){
     caseToAdd.indexInVect = index;
     caseToAdd.bag = bagToAdd;
     Ticket T;
-
+    
     storage.insert(make_pair(T, caseToAdd));
-
+     
+    
     auto it = Cases.begin();
     it += index;
     Cases.insert(it,T);
-
+    
     usingCase++;
     filledCases++;
+    return T;
 
 
 }
 
 bagage Storage::collect(Ticket T){
-    t_case obtainedCase = storage.at(T);
-    int index = obtainedCase.indexInVect;
-    auto it = Cases.begin() + index;
-    Cases.erase(it);
-    emptyCases.push(index);
-    storage.erase(T);
+    auto it = storage.find(T);
+    t_case obtainedCase= it->second;
+    if(it != storage.cend()){
+      
+      int index = obtainedCase.indexInVect;
+      auto it = Cases.begin() + index;
+      Cases.erase(it);
+      emptyCases.push(index);
+      //storage.erase(T);
 
-    filledCases--;
+      filledCases--;
+    }
+
 
     return obtainedCase.bag;
 

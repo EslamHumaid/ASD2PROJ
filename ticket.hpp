@@ -14,6 +14,12 @@ class Ticket{
     bool operator!=(Ticket const& autre) const; 
     size_t operator()(const Ticket& x) const;
 
+    struct ticketHasher{
+        size_t operator()(const Ticket & obj) const{
+            return obj.hash_code(); 
+        } 
+    };
+
     
     std::string getCodeTicket();
 
