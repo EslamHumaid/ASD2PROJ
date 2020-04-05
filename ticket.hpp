@@ -40,6 +40,12 @@ class Ticket{
      * */
     size_t operator()(const Ticket& x) const;
 
+    struct ticketHasher{
+        size_t operator()(const Ticket & obj) const{
+            return obj.hash_code(); 
+        } 
+    };
+
     
     /**
      * Role: accesser for the code of the ticket

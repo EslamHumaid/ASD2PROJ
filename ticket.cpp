@@ -1,27 +1,26 @@
 #include "ticket.hpp"
+#include <iostream>
 
 using namespace std;
 
-//hash function to override the (operator())
-namespace std {
-  template<> struct hash<Ticket> {
-    size_t operator()(const Ticket& x) const
-    {
-      return x.hash_code();
-    }
-  };
-}
-
- /**
+/**
     * Role:(constructor) creat a ticket and generate the code of the ticket
  * */
 Ticket::Ticket() {
-    string letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    string _codeTicket = "";
+   
+    _codeTicket = "";
 
-    //picking random characters from letters
-    for (int i=0;i<8;i++) {
-        _codeTicket = _codeTicket + letters.at(rand() % letters.size());
+    
+     static const char alphanum[] =
+        "0123456789"
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        "abcdefghijklmnopqrstuvwxyz";
+
+    
+
+    for (unsigned int i = 0; i < 8 ; ++i)
+    {
+        _codeTicket += alphanum[rand() % (sizeof(alphanum) - 1)];
     }
 
 

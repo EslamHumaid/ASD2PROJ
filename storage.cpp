@@ -2,6 +2,8 @@
 #include "storage.hpp"
 #include "cassert"
 #include <unordered_map>
+#include<iostream>
+
 
 using namespace std;
 
@@ -14,17 +16,8 @@ using namespace std;
         
     } t_case;
 
-//hash function to override the (operator())
-namespace std {
-  template<> struct hash<Ticket> {
-    size_t operator()(const Ticket& x) const
-    {
-      return x.hash_code();
-    }
-  };
-}
 
-
+typedef std::pair<Ticket,t_case> t_entree;
 
 /**
   * Role: (constructor): creat un instante of the class Storage with a specific capacity
@@ -68,7 +61,7 @@ Ticket Storage::deposit(bagage bagToAdd){
     //the index of the case in the vector(Cases)
     int index;
     //verifing whether all the cases were used for the first time or not
-    if(_usingCase < _nbCases){
+    if(_usingCase <= _nbCases){
         //if theres a case which have never been used
         //then it's index in the vector(Cases) will be equal to usingCase.
         index = _usingCase;
