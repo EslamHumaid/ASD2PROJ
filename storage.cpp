@@ -93,6 +93,8 @@ Ticket Storage::deposit(bagage bagToAdd){
     _filledCases++;
 
 
+  return T;
+
 }
 
 /**

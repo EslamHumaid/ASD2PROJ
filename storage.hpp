@@ -66,7 +66,7 @@ class Storage{
     //A vector of tickets to represent all the cases after there first use
     std::vector<Ticket> _Cases; 
     // an unordered map to link each ticket and it's the bagage 
-    std::unordered_map<Ticket,t_case> _storage;
+    std::unordered_map<Ticket,t_case, Ticket::ticketHasher> _storage;
     //the number of cases in the storage(capacity)
     size_t _nbCases;
     //the number of occupied cases 
