@@ -1,19 +1,13 @@
-# Authors: Eslam HUMAID, Abrahim BAMATRAF.
-# Groupe : 485L
-# Git Repository  :  https://github.com/EslamHumaid/CNTP3.git
+# authors: Eslam HUMAID , Abrahim BAMATRAF Groupe 485
+# date: 06/04/2020
+# git: https://github.com/EslamHumaid/ASD2PROJ
 
-# Modèle de fichier Makefile, à adapter pour le TP
-# Faire une copie de ce fichier, changer le nom pour "makefile" (sans extension .txt!!!) et l'adapter pour votre projet
-# >cp makefile_model.txt makefile
-# 
-# Maintenant pour compiler il suffit d'écrire 
-# >make
 
 
 # options de compilation
 CC = gcc
 CCFLAGS = -Wall
-LIBS = -lm	-lstdc++ 			# par exemple, -lm rajoute le libm standard
+LIBS = -lm	-lstdc++ 			
 LIBSDIR = 
 
 # fichiers du projet

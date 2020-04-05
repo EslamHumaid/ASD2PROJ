@@ -1,10 +1,16 @@
+/**
+* @file:  main.cpp
+* @author: Eslam HUMAID , Abrahim BAMATRAF Groupe 485
+* @date: 06/04/2020
+* @git: https://github.com/EslamHumaid/ASD2PROJ
+**/
+
 #include <iostream>
 #include "storage.hpp"
 #include "ticket.hpp"
 #include <random>
 
 using namespace std;
-
 
 int main(){
     //craeting a storage with a capacity of 3 bagages
@@ -18,35 +24,52 @@ int main(){
     //creating 3 different tickets
     Ticket t1,t2,t3;
     
-    cout <<"testing the class Ticket" << endl;
-
+    cout <<"----------testing the class Ticket-----------" << endl;
+    cout << " " << endl;
+    cout << " " << endl;
     cout <<"testing Ticket::getCodeTicket()" << endl;
 
     cout <<"the code of the ticket t1 :" << t1.getCodeTicket()<< endl;
     cout <<"the code of the ticket t2 :" << t2.getCodeTicket()<< endl;
-
+    cout << " " << endl;
+    cout << " " << endl;
 
     cout <<"testing Ticket::operator==" << endl;
     cout <<"testing t1 == t2 expect false (0)" << endl;
     cout <<" t1 == t2 : " << (t1==t2) << endl;
+    cout << " " << endl;
+    cout << " " << endl;
+
 
     cout <<"testing t1 == t1 expect true (1)" << endl;
     cout <<" t1 == t1 : " << (t1==t1) << endl;
-
+    cout << " " << endl;
+    cout << " " << endl;
     
     cout <<"testing Ticket::operator!=" << endl;
     cout <<"testing t1 != t2 expect true (1)" << endl;
     cout <<" t1 != t2 : " << (t1!=t2) << endl;
+    cout << " " << endl;
+    cout << " " << endl;
 
     cout <<"testing Ticket::operator!=" << endl;
     cout <<"testing t1 != t1 expect false (0)" << endl;
     cout <<" t1 != t1 : " << (t1!=t1) << endl;
+    cout << " " << endl;
+    cout << " " << endl;
 
-    cout <<"testing the class Storage" << endl;
+
+    cout <<"-----------testing the class Storage----------" << endl;
+    cout << " " << endl;
+    cout << " " << endl;
+
 
     cout <<"testing  Storage::isFull()" << endl;
     cout <<"before adding any baggage expect isFull() to be false (0)" << endl;
     cout <<"is mystorage full : " << myStorage.isFull() <<endl;
+    cout << " " << endl;
+    cout << " " << endl;
+
 
     cout <<"testing Storage::deposit by adding three bagage" << endl;
     t1 = myStorage.deposit(bag2);
@@ -54,11 +77,15 @@ int main(){
     t3 = myStorage.deposit(bag4);
     cout <<"after adding three bagage expect isFull() to be true (1)" << endl;
     cout <<"is mystorage full : " << myStorage.isFull() <<endl;
+    cout << " " << endl;
+    cout << " " << endl;
+
 
     cout <<"testing  Storage::collect by collecting three bagage" << endl;
     cout << "collecting the bagage linked to t1 expect 2 got : " << myStorage.collect(t1) << endl;
     cout << "collecting the bagage linked to t2 expect 1 got : " << myStorage.collect(t2) << endl;
     cout << "collecting the bagage linked to t3 expect 4 got : " << myStorage.collect(t3) << endl;
+    
 
 
 }
