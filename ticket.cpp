@@ -72,7 +72,7 @@ bool Ticket::operator!=(Ticket const& autre) const{
     * Role: accesser for the code of the ticket
     * return: the cord of the ticket (string)
 * */
-string Ticket::getCodeTicket(){
+string Ticket::getCodeTicket() const{
     return _codeTicket;
 }
 

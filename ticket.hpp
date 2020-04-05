@@ -51,7 +51,7 @@ class Ticket{
      * Role: accesser for the code of the ticket
      * return: the cord of the ticket (string)
      * */
-    std::string getCodeTicket();
+    std::string getCodeTicket() const;
 
 
     private:
