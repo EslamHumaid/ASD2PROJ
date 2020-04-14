@@ -11,17 +11,14 @@ Bagage::Bagage(string id , float val){
 
 Bagage::~Bagage(){}
 
-string Bagage::getID(){
+string Bagage::getID() const{
     return _ID;
 }
 
-float Bagage::getValume(){
+float Bagage::getValume() const{
     return _valume;
 }
 
-float Bagage::getValume(){
-    return _valume;
-}
 
 void Bagage::changeValume(float newval){
 

@@ -1,5 +1,5 @@
-#ifndef DEF_BAG
-#define DEF_BAG
+#ifndef DEF_BAGAGE
+#define DEF_BAGAGE
 
 #include <string>
 
@@ -7,13 +7,13 @@ class Bagage{
 
     public:
 
-    Bagage(std::string s , float v);
+    Bagage(std::string , float );
 
     ~Bagage();
 
-    std::string getID();
+    std::string getID() const;
 
-    float getValume();
+    float getValume() const;
 
     void changeValume(float);
 

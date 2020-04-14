@@ -8,6 +8,8 @@
 #include <iostream>
 #include "storage.hpp"
 #include "ticket.hpp"
+#include "bagage.hpp"
+#include "vstorage.hpp"
 #include <random>
 
 using namespace std;
@@ -85,6 +87,16 @@ int main(){
     cout << "collecting the bagage linked to t1 expect 2 got : " << myStorage.collect(t1) << endl;
     cout << "collecting the bagage linked to t2 expect 1 got : " << myStorage.collect(t2) << endl;
     cout << "collecting the bagage linked to t3 expect 4 got : " << myStorage.collect(t3) << endl;
+
+
+    
+    cout <<"part 2" <<endl;
+
+    Bagage vbag1("a",10);
+    Bagage vbag2("b",5);
+
+    cout << "show valume : " << vbag1.getValume() <<endl;
+    
     
 
 

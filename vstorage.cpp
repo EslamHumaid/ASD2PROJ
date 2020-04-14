@@ -1,28 +1,31 @@
 #include "ticket.hpp"
 #include "vstorage.hpp"
+#include "bagage.hpp"
 #include "cassert"
 #include <unordered_map>
 #include<iostream>
-#include "bagage.hpp"
+#include <random>
 
 
 using namespace std;
 
   // A struct to represnt the cases by the bag in them and there index in the vector
-    typedef struct 
+   struct t_casev 
     {
         
         float valumeOfCase;
         Bagage bag;
+
+        t_casev() = default;
+        t_casev(float a , Bagage b);
         
-    } t_case;
+    }; 
 
 
-typedef std::pair<Ticket,t_case> t_entree;
-
+typedef std::pair<Ticket,t_casev> t_entree;
 /**
-  * Role: (constructor): creat un instante of the class Storage with a specific capacity
-  * parameters: the size of the storage 
+  * @role: (constructor): create an instance of the class Storage with a specific capacity
+  * @param: the size of the storage 
 **/
 VStorage::VStorage(size_t nb){
   //the storage must have a capacity greater then 0
@@ -43,13 +46,14 @@ VStorage::VStorage(size_t nb){
 
 /**
 * Destructor
-* Role: distroying the object storage
+* @role: distroying the object storage
+* since there aren't any dynamic allocations, no actions are needed.
 * */
 VStorage::~VStorage(){}
 
 /**
-  * Role: verify whether the storage is full or not.
-  * returns a boolean :
+  * @role: verify whether the storage is full or not.
+  * @return: a boolean :
   * true if the storage is full
   * false if the storage is not full
 * */
@@ -60,9 +64,9 @@ bool VStorage::isFull() const{
 
 
 /**
-  * Role: takes a bagage and puts it in a Case.
-  * parameters: the bagage.
-  * returns a ticket that is linked to the bagage.
+  * @role: takes a bagage and puts it in a Case.
+  * @param: the bagage.
+  * @return: a ticket that is linked to the bagage.
 * */
 Ticket VStorage::deposit(Bagage bagToAdd){
   
@@ -91,10 +95,10 @@ Ticket VStorage::deposit(Bagage bagToAdd){
     //deleting the case chosen from _emptyCases
     _emptyCases.erase(_emptyCases.begin()+index);
 
-    //craeting a t_case and give it the bagage and the index in the vector(Cases)
-    t_case caseToAdd;
-    caseToAdd.valumeOfCase = currentval;
-    caseToAdd.bag = bagToAdd;
+    //craeting a t_case and give it the bagage and the valume  //TO FIX
+    //t_casev caseToAdd;
+    //caseToAdd.valumeOfCase = currentval;
+    //caseToAdd.bag = bagToAdd;
     //creating a new ticket
     Ticket T;
 
@@ -112,16 +116,16 @@ Ticket VStorage::deposit(Bagage bagToAdd){
 }
 
 /**
-  * Role:takes a ticket and retuen the bagage linked to the ticket.
-  * parameters: the ticket.
-  * return: the bagage
+  * @role:takes a ticket and retuen the bagage linked to the ticket.
+  * @param: the ticket.
+  * @return: the bagage
 * */
 Bagage VStorage::collect(Ticket T){
     //if the storage is empty we can not collect any bagage 
     assert(_filledCases>0);
 
     //searching the unordered map (storage) for the bagage linked to tickit (T)
-    t_case obtainedCase = _storage.at(T);
+    t_casev obtainedCase = _storage.at(T);
     //adding the index of the empty case to the queue(emptyCases)
     _emptyCases.push_back(obtainedCase.valumeOfCase);
     //erasing the cases from the unordered map (storage)
@@ -137,6 +141,14 @@ Bagage VStorage::collect(Ticket T){
 }
 
 
+
+/**
+  * @role: verify whether the storage hase a case bigger enough for a certain valume.
+  * @param: the valume.
+  * @return: a boolean:
+  * true if there is case bigger enough.
+  * false if there is not.
+* */
 bool VStorage::haveSpace(float val){
   bool res = false;
 
