@@ -67,9 +67,6 @@ class VStorage{
         
         float valumeOfCase;
         Bagage bag;
-
-        t_casev() = default;
-        t_casev(float a , Bagage b);
         
     }; 
 

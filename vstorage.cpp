@@ -16,8 +16,7 @@ using namespace std;
         float valumeOfCase;
         Bagage bag;
 
-        t_casev() = default;
-        t_casev(float a , Bagage b);
+        
         
     }; 
 
@@ -101,6 +100,7 @@ Ticket VStorage::deposit(Bagage bagToAdd){
     //caseToAdd.bag = bagToAdd;
     //creating a new ticket
     Ticket T;
+    t_casev caseToAdd = {bagToAdd.getValume(), bagToAdd};
 
     //adding the new bagage to the unordered map
     _storage.insert(make_pair(T, caseToAdd));
