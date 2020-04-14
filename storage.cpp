@@ -1,8 +1,15 @@
+/**
+* @file:  storage.cpp
+* @author: Eslam HUMAID , Abrahim BAMATRAF Groupe 485
+* @date: 06/04/2020
+* @git: https://github.com/EslamHumaid/ASD2PROJ
+**/
+
 #include "ticket.hpp"
 #include "storage.hpp"
-#include "cassert"
+#include "cassert" //for the assertions
 #include <unordered_map>
-#include<iostream>
+
 
 
 using namespace std;
@@ -20,12 +27,13 @@ using namespace std;
 typedef std::pair<Ticket,t_case> t_entree;
 
 /**
-  * Role: (constructor): creat un instante of the class Storage with a specific capacity
-  * parameters: the size of the storage 
+  * @role: (constructor): create an instance of the class Storage with a specific capacity
+  * @param: the size of the storage 
 **/
 Storage::Storage(size_t nb){
     //the storage must have a capacity greater then 0
     assert(nb>0);
+
     _nbCases = nb;
     _filledCases = 0;
     _usingCase = 0;
@@ -34,13 +42,14 @@ Storage::Storage(size_t nb){
 
 /**
 * Destructor
-* Role: distroying the object storage
+* @role: distroying the object storage
+* since there aren't any dynamic allocations, no actions are needed.
 * */
 Storage::~Storage(){}
 
 /**
-  * Role: verify whether the storage is full or not.
-  * returns a boolean :
+  * @role: verify whether the storage is full or not.
+  * @return: a boolean :
   * true if the storage is full
   * false if the storage is not full
 * */
@@ -51,15 +60,16 @@ bool Storage::isFull() const{
 
 
 /**
-  * Role: takes a bagage and puts it in a Case.
-  * parameters: the bagage.
-  * returns a ticket that is linked to the bagage.
+  * @role: takes a bagage and puts it in a Case.
+  * @param: the bagage.
+  * @return: a ticket that is linked to the bagage.
 * */
 Ticket Storage::deposit(bagage bagToAdd){
-    //stops the program if the storage if full
-    assert(!isFull());
-    //the index of the case in the vector(Cases)
-    int index;
+    
+    assert(!isFull());  //stops the program if the storage if full
+    int index;  //the index of the case in the vector(Cases)
+
+
     //verifing whether all the cases were used for the first time or not
     if(_usingCase <= _nbCases){
         //if theres a case which have never been used
@@ -72,10 +82,12 @@ Ticket Storage::deposit(bagage bagToAdd){
         _emptyCases.pop();
     }
 
-    //craeting a t_case and give it the bagage and the index in the vector(Cases)
+    //creating a t_case and giving it the bagage and the index in the vector(Cases)
     t_case caseToAdd;
     caseToAdd.indexInVect = index;
     caseToAdd.bag = bagToAdd;
+
+
     //creating a new ticket
     Ticket T;
 
@@ -83,10 +95,10 @@ Ticket Storage::deposit(bagage bagToAdd){
     _storage.insert(make_pair(T, caseToAdd));
 
     //creating un iterator 
-    auto it = _Cases.begin();
+    auto it = _cases.begin();
     it += index;
     //adding the ticket to the vector(Cases)
-    _Cases.insert(it,T);
+    _cases.insert(it,T);
 
     //incressing the number of usingCase and filledCases
     _usingCase++;
@@ -98,9 +110,9 @@ Ticket Storage::deposit(bagage bagToAdd){
 }
 
 /**
-  * Role:takes a ticket and retuen the bagage linked to the ticket.
-  * parameters: the ticket.
-  * return: the bagage
+  * @role:takes a ticket and retuen the bagage linked to the ticket.
+  * @param: the ticket.
+  * @return: the bagage
 * */
 bagage Storage::collect(Ticket T){
     //if the storage is empty we can not collect any bagage 
@@ -109,11 +121,14 @@ bagage Storage::collect(Ticket T){
     //searching the unordered map (storage) for the bagage linked to tickit (T)
     t_case obtainedCase = _storage.at(T);
     int index = obtainedCase.indexInVect;
-    auto it = _Cases.begin() + index;
+    auto it = _cases.begin() + index;
+
     //erasing the cases from the vector(Cases)
-    _Cases.erase(it);
+    _cases.erase(it);
+
     //adding the index of the empty case to the queue(emptyCases)
     _emptyCases.push(index);
+
     //erasing the cases from the unordered map (storage)
     _storage.erase(T);
 
