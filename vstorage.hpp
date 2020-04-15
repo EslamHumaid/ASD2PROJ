@@ -54,7 +54,11 @@ class VStorage{
      * true if there is case bigger enough.
      * false if there is not.
      * */
-    bool haveSpace(float);
+    bool haveSpace(float) const;
+
+    std::vector<float> getValumes() const;
+
+    std::vector<float> getEmptyCases() const;
 
 
 
@@ -83,7 +87,7 @@ class VStorage{
     //vector of the empty cases used to chose the oldest used case to fill first
     std::vector<float> _emptyCases;
     //A vector of the valume of eache case
-    std::vector<float> _valume;
+    std::vector<float> _valumes;
  
 };
 

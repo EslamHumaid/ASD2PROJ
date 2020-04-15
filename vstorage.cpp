@@ -33,12 +33,11 @@ VStorage::VStorage(size_t nb){
   _filledCases = 0;
   _usingCase = 0;
 
-  for(int i = 0; i <= _nbCases ; i++){
+  for(int i = 0; i < _nbCases ; i++){
     float v; //the valume of the case
     v = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/100)); // a random value of the valume
-
-    _valume[i]=v;
-    _emptyCases[i] = v;
+    _valumes.push_back(v);
+    _emptyCases.push_back(v);
   }
 
 }
@@ -71,7 +70,7 @@ Ticket VStorage::deposit(Bagage bagToAdd){
   
     float valumeOfBag = bagToAdd.getValume();
     //stops the program if the storage if full
-    assert(!haveSpace(valumeOfBag));
+    assert(haveSpace(valumeOfBag));
     //the index of the case in the vector(Cases)
     int index = -1;
     float currentval;
@@ -100,7 +99,7 @@ Ticket VStorage::deposit(Bagage bagToAdd){
     //caseToAdd.bag = bagToAdd;
     //creating a new ticket
     Ticket T;
-    t_casev caseToAdd = {bagToAdd.getValume(), bagToAdd};
+    t_casev caseToAdd = {currentval, bagToAdd};
 
     //adding the new bagage to the unordered map
     _storage.insert(make_pair(T, caseToAdd));
@@ -149,7 +148,7 @@ Bagage VStorage::collect(Ticket T){
   * true if there is case bigger enough.
   * false if there is not.
 * */
-bool VStorage::haveSpace(float val){
+bool VStorage::haveSpace(float val) const{
   bool res = false;
 
   if(!isFull()){
@@ -164,5 +163,13 @@ bool VStorage::haveSpace(float val){
   }
   
   return res;
+}
+
+vector<float> VStorage::getValumes() const{
+  return _valumes;
+}
+
+vector<float> VStorage::getEmptyCases() const{
+  return _emptyCases;
 }
 
