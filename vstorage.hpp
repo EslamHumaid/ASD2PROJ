@@ -56,8 +56,18 @@ class VStorage{
      * */
     bool haveSpace(float) const;
 
+
+    /**
+        * @role: returns the vector _valumes to show all valumes of the storage
+        * @return: the vector _valumes
+    * */
     std::vector<float> getValumes() const;
 
+
+    /**
+        * @role: returns the vector _emptyCases to show all valumes of the empty cases
+        * @return: the vector _emptyCases
+    * */
     std::vector<float> getEmptyCases() const;
 
 

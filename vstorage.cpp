@@ -29,10 +29,12 @@ typedef std::pair<Ticket,t_casev> t_entree;
 VStorage::VStorage(size_t nb){
   //the storage must have a capacity greater then 0
   assert(nb>0);
+
   _nbCases = nb;
   _filledCases = 0;
   _usingCase = 0;
 
+  //adding the cases to _valumes and _emptyCases after giving them a random value for the valume
   for(int i = 0; i < _nbCases ; i++){
     float v; //the valume of the case
     v = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/100)); // a random value of the valume
@@ -69,19 +71,24 @@ bool VStorage::isFull() const{
 Ticket VStorage::deposit(Bagage bagToAdd){
   
     float valumeOfBag = bagToAdd.getValume();
-    //stops the program if the storage if full
+    //stops the program if the storage does not have a big enough case
     assert(haveSpace(valumeOfBag));
     //the index of the case in the vector(Cases)
-    int index = -1;
-    float currentval;
+    int index = -1; //the starting value is -1 to indicate that we didn't find a case yet 
+
+    float currentval; // the valume of the chosen case that will be used
+
+    //going through the vector _emptyCases to choose the oldest case that is 
+    //big enough for the bagage
     for(int i = 0 ; i<=_emptyCases.size() ; i++){
 
-      if(index == -1){
-        if(_emptyCases[i] >= valumeOfBag){
+      if(index == -1){ // if we don't have a case yest 
+        if(_emptyCases[i] >= valumeOfBag){ // we only need to check that the current case is big enough
           index = i;
           currentval =  _emptyCases[i];
         }
-      }else{
+      }else{// if we already have a case big enough we need to check 
+            //if the current case is big enough for the bagage and it's smaller then the chosen case
         if((_emptyCases[i] >= valumeOfBag) and (_emptyCases[i] < currentval) ){
           index = i;
           currentval =  _emptyCases[i];
@@ -93,13 +100,12 @@ Ticket VStorage::deposit(Bagage bagToAdd){
     //deleting the case chosen from _emptyCases
     _emptyCases.erase(_emptyCases.begin()+index);
 
-    //craeting a t_case and give it the bagage and the valume  //TO FIX
-    //t_casev caseToAdd;
-    //caseToAdd.valumeOfCase = currentval;
-    //caseToAdd.bag = bagToAdd;
-    //creating a new ticket
-    Ticket T;
+    //craeting a t_case and give it the bagage and the valume 
     t_casev caseToAdd = {currentval, bagToAdd};
+    
+    //creating a ticket
+    Ticket T;
+    
 
     //adding the new bagage to the unordered map
     _storage.insert(make_pair(T, caseToAdd));
@@ -125,7 +131,8 @@ Bagage VStorage::collect(Ticket T){
 
     //searching the unordered map (storage) for the bagage linked to tickit (T)
     t_casev obtainedCase = _storage.at(T);
-    //adding the index of the empty case to the queue(emptyCases)
+    //adding the case (it's valume) back to the vector _emptyCases
+    //the case will be added to the end of the vector to maintain the order from old to new
     _emptyCases.push_back(obtainedCase.valumeOfCase);
     //erasing the cases from the unordered map (storage)
     _storage.erase(T);
@@ -151,11 +158,13 @@ Bagage VStorage::collect(Ticket T){
 bool VStorage::haveSpace(float val) const{
   bool res = false;
 
+  //if the storage is not full we check the sizes of the cases
   if(!isFull()){
 
     int ind = _emptyCases.size();
+
     while ((ind >= 0) and (!res)){
-      if(_emptyCases[ind] >= val){
+      if(_emptyCases[ind] >= val){ //if we found at least one case big enough we exit the loop
       res = true;
       }
       ind--;
@@ -165,10 +174,18 @@ bool VStorage::haveSpace(float val) const{
   return res;
 }
 
+/**
+ * @role: returns the vector _valumes to show all valumes of the storage
+ * @return: the vector _valumes
+ * */
 vector<float> VStorage::getValumes() const{
   return _valumes;
 }
 
+/**
+ * @role: returns the vector _emptyCases to show all valumes of the empty cases
+ * @return: the vector _emptyCases
+ * */
 vector<float> VStorage::getEmptyCases() const{
   return _emptyCases;
 }
