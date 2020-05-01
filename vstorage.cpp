@@ -97,11 +97,12 @@ Ticket VStorage::deposit(Bagage bagToAdd){
     //deleting the case chosen from _emptyCases
     _emptyCases.erase(_emptyCases.begin()+indexInEmptyCases);
 
-    //craeting a t_case and give it the bagage and the valume 
-    t_casev caseToAdd = {currentval, bagToAdd};
+     
+    
     
     //creating a ticket
     Ticket T;
+    //craeting a t_case and give it the bagage and the valume
     t_casev caseToAdd = {index, bagToAdd};
 
     //adding the new bagage to the unordered map
