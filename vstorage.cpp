@@ -42,6 +42,58 @@ VStorage::VStorage(size_t nb){
 
 }
 
+  /**
+    * @role: (constructor): create an instance of the class Storage with a list of paires (ni,vi)
+    * @param: the list of paires (ni,vi) with:
+    * ni: is the number of cases that has a specific valume
+    * vi: the specific valume
+  **/
+VStorage::VStorage(vector<pair<int,float>> list){
+  _nbCases = 0;
+  _filledCases = 0;
+  _usingCase = 0;
+
+  int indOfCase =0;
+
+  for(int i = 0; i < list.size();i++){
+    float v = list.at(i).second;
+    for(int j = 0; j < list.at(i).first ; j++ ){
+
+      _casesVolumes.push_back(v);
+      _emptyCases.push_back(indOfCase);
+
+      indOfCase++;
+      _nbCases++;
+    }
+  }
+}
+
+  /**
+    * @role: (constructor): create an instance of the class Storage with two lists vi and ni 
+    * @param: the two lists with:
+    * ni: is the number of cases that has a specific valume
+    * vi: the specific valume
+  **/
+VStorage::VStorage(vector<float> valum, vector<int>num){
+  _nbCases = 0;
+  _filledCases = 0;
+  _usingCase = 0;
+
+  int indOfCase =0;
+
+  for(int i = 0; i < valum.size();i++){
+    float v = valum.at(i);
+    for(int j = 0; j < num.at(i); j++ ){
+
+      _casesVolumes.push_back(v);
+      _emptyCases.push_back(indOfCase);
+
+      indOfCase++;
+      _nbCases++;
+    }
+  }
+}
+
 /**
 * Destructor
 * @role: distroying the object storage

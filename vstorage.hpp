@@ -21,6 +21,22 @@ class VStorage{
     VStorage(size_t);
 
     /**
+     * @role: (constructor): create an instance of the class Storage with a list of paires (ni,vi)
+     * @param: the list of paires (ni,vi) with:
+     * ni: is the number of cases that has a specific valume
+     * vi: the specific valume
+     **/
+    VStorage(std::vector<std::pair<int,float>>);
+
+    /**
+     * @role: (constructor): create an instance of the class Storage with two lists vi and ni 
+     * @param: the two lists with:
+     * ni: is the number of cases that has a specific valume
+     * vi: the specific valume
+     **/
+    VStorage(std::vector<float> , std::vector<int>);
+
+    /**
      * @role:(Destructor) distroying the object storage
      * */
     ~VStorage();

@@ -146,8 +146,35 @@ int main(){
     cout <<"----------testing the class VStorage-----------" << endl;
 
     //creating a VStorage
-    VStorage vmyStorage(4);
 
+    /*
+    //using the constructor VStorage(size_t)
+    VStorage vmyStorage(4);
+    */
+
+   /*
+   //using the constructor VStorage(std::vector<pair<int,float>>)
+    vector<pair<int,float>> list;
+    list.push_back(pair<int,float>(2,10));
+    list.push_back(pair<int,float>(2,100));
+
+    VStorage vmyStorage(list);
+    */
+
+   //using the constructor VStorage(std::vector<float> , std::vector<int>);
+
+   vector<float> vi;
+   vi.push_back(10);
+   vi.push_back(100);
+   vector<int> ni;
+   ni.push_back(2);
+   ni.push_back(2);
+
+   VStorage vmyStorage(vi,ni);
+
+
+
+   
     cout <<"testing VStorage::getValumes" << endl;
 
     vector<float> listOfVector = vmyStorage.getValumes();
@@ -205,5 +232,12 @@ int main(){
 
     listOfEmptyCases = vmyStorage.getEmptyCases();
     printIntVector(listOfEmptyCases);
+
+
+
+    listOfVector = vmyStorage.getValumes();
+
+    cout <<"showing the list of the valumes" << endl;
+    printFloatVector(listOfVector);
 
 }
