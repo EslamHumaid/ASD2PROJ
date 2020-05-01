@@ -13,12 +13,10 @@ using namespace std;
    struct t_casev 
     {
         
-        float valumeOfCase;
+        int indexInCasesVolumes;
         Bagage bag;
-
         
-        
-    }; 
+    };  
 
 
 typedef std::pair<Ticket,t_casev> t_entree;
@@ -36,9 +34,10 @@ VStorage::VStorage(size_t nb){
   for(int i = 0; i <= _nbCases ; i++){
     float v; //the valume of the case
     v = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/100)); // a random value of the valume
+    
 
-    _valume[i]=v;
-    _emptyCases[i] = v;
+    _casesVolumes[i] = v;
+    _emptyCases[i] = i;
   }
 
 }
@@ -75,24 +74,28 @@ Ticket VStorage::deposit(Bagage bagToAdd){
     //the index of the case in the vector(Cases)
     int index = -1;
     float currentval;
+    int indexInEmptyCases;
     for(int i = 0 ; i<=_emptyCases.size() ; i++){
 
       if(index == -1){
-        if(_emptyCases[i] >= valumeOfBag){
-          index = i;
-          currentval =  _emptyCases[i];
+
+        if(_casesVolumes[_emptyCases[i]] >= valumeOfBag){
+          index = _emptyCases[i];
+          indexInEmptyCases = i;
+          currentval =  _casesVolumes[_emptyCases[i]];
         }
       }else{
-        if((_emptyCases[i] >= valumeOfBag) and (_emptyCases[i] < currentval) ){
-          index = i;
-          currentval =  _emptyCases[i];
+        if((_casesVolumes[_emptyCases[i]] >= valumeOfBag) && (_casesVolumes[_emptyCases[i]] < currentval) ){
+          index = _emptyCases[i];
+          indexInEmptyCases = i;
+          currentval =  _casesVolumes[_emptyCases[i]];
         }
       }
 
     }
 
     //deleting the case chosen from _emptyCases
-    _emptyCases.erase(_emptyCases.begin()+index);
+    _emptyCases.erase(_emptyCases.begin()+indexInEmptyCases);
 
     //craeting a t_case and give it the bagage and the valume  //TO FIX
     //t_casev caseToAdd;
@@ -100,7 +103,7 @@ Ticket VStorage::deposit(Bagage bagToAdd){
     //caseToAdd.bag = bagToAdd;
     //creating a new ticket
     Ticket T;
-    t_casev caseToAdd = {bagToAdd.getValume(), bagToAdd};
+    t_casev caseToAdd = {index, bagToAdd};
 
     //adding the new bagage to the unordered map
     _storage.insert(make_pair(T, caseToAdd));
@@ -127,7 +130,7 @@ Bagage VStorage::collect(Ticket T){
     //searching the unordered map (storage) for the bagage linked to tickit (T)
     t_casev obtainedCase = _storage.at(T);
     //adding the index of the empty case to the queue(emptyCases)
-    _emptyCases.push_back(obtainedCase.valumeOfCase);
+    _emptyCases.push_back(obtainedCase.indexInCasesVolumes);
     //erasing the cases from the unordered map (storage)
     _storage.erase(T);
 
@@ -156,7 +159,7 @@ bool VStorage::haveSpace(float val){
 
     int ind = _emptyCases.size();
     while ((ind >= 0) and (!res)){
-      if(_emptyCases[ind] >= val){
+      if(_casesVolumes[_emptyCases[ind]] >= val){
       res = true;
       }
       ind--;
