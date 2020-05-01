@@ -43,8 +43,8 @@ VStorage::VStorage(size_t nb){
 }
 
   /**
-    * @role: (constructor): create an instance of the class Storage with a list of paires (ni,vi)
-    * @param: the list of paires (ni,vi) with:
+    * @role: (constructor): create an instance of the class Storage with a list of pairs (ni,vi)
+    * @param: the list of pairs (ni,vi) with:
     * ni: is the number of cases that has a specific valume
     * vi: the specific valume
   **/
