@@ -73,9 +73,10 @@ class VStorage{
 
 
 
-    // A struct to represnt the cases by the bag in them and there valume
+    
     private:
 
+    // A struct to represnt the cases by the bag in them and their volume
     struct t_casev 
     {
         
@@ -94,7 +95,7 @@ class VStorage{
     size_t _filledCases;
     //the number of cases that was used (not necessarily occupied at the moment)
     size_t _usingCase;
-    //vector of the empty cases used to chose the oldest used case to fill first
+    //vector containing the indices of the empty case in _casesVolumes, used to choose the oldest used case to fill first
     std::vector<int> _emptyCases;
     //A vector of the valume of eache case
     std::vector<float> _casesVolumes;

@@ -75,20 +75,22 @@ Ticket VStorage::deposit(Bagage bagToAdd){
     int index = -1;
     float currentval;
     int indexInEmptyCases;
+    float caseVolume;
     for(int i = 0 ; i<=_emptyCases.size() ; i++){
-
+      caseVolume = _casesVolumes[_emptyCases[i]];
+      
       if(index == -1){
 
-        if(_casesVolumes[_emptyCases[i]] >= valumeOfBag){
+        if(caseVolume >= valumeOfBag){
           index = _emptyCases[i];
           indexInEmptyCases = i;
-          currentval =  _casesVolumes[_emptyCases[i]];
+          currentval =  caseVolume;
         }
       }else{
-        if((_casesVolumes[_emptyCases[i]] >= valumeOfBag) && (_casesVolumes[_emptyCases[i]] < currentval) ){
+        if((caseVolume >= valumeOfBag) && (caseVolume < currentval) ){
           index = _emptyCases[i];
           indexInEmptyCases = i;
-          currentval =  _casesVolumes[_emptyCases[i]];
+          currentval =  caseVolume;
         }
       }
 
