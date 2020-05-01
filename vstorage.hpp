@@ -38,14 +38,14 @@ class VStorage{
      * @param: the bagage.
      * @return: a ticket that is linked to the bagage.
      * */
-    Ticket deposit(Bagage);
+    Ticket deposit(Bagage&);
 
     /**
      * @role:takes a ticket and returns the bagage linked to the ticket.
      * @param: the ticket.
      * @return: the bagage
      * */
-    Bagage collect(Ticket);
+    Bagage& collect(Ticket);
 
     /**
      * @role: verify whether the storage hase a case bigger enough for a certain valume.
@@ -81,7 +81,7 @@ class VStorage{
     {
         
         int indexInCasesVolumes;
-        Bagage bag;
+        Bagage &bag;
         
     }; 
 

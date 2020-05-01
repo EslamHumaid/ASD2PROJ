@@ -11,7 +11,7 @@ LIBS = -lm	-lstdc++
 LIBSDIR = 
 
 # fichiers du projet
-SRC = main.cpp ticket.cpp storage.cpp vstorage.cpp bagage.cpp
+SRC = main.cpp ticket.cpp storage.cpp vstorage.cpp backbag.cpp
 OBJ = $(SRC:.c=.o)
 EXEC = run.out
 
@@ -24,6 +24,7 @@ ticket.o: ticket.hpp
 storage.o: storage.hpp
 storage.o: ticket.hpp
 bagage.o: bagage.hpp
+bagback.o : bagback.hpp
 vstorage.o: vstorage.hpp
 vstorage.o: ticket.hpp
 vstorage.o: bagage.hpp

@@ -9,6 +9,7 @@
 #include "storage.hpp"
 #include "ticket.hpp"
 #include "bagage.hpp"
+#include "backbag.hpp"
 #include "vstorage.hpp"
 #include <random>
 
@@ -114,32 +115,32 @@ int main(){
     cout <<"----------testing the class Bagage-----------" << endl;
 
     //creating a couple of Bagages
-    Bagage vbag1("a",10);
-    Bagage vbag2("b",5);
-    Bagage vbag3("c",200);
-    Bagage vbag4("d",4);
-    Bagage vbag5("e",30);
+    Backbag vbag1("a",10);
+    Backbag vbag2("b",5);
+    Backbag vbag3("c",200);
+    Backbag vbag4("d",4);
+    Backbag vbag5("e",30);
 
     cout <<"testing Bagage::getValume" << endl;
-    cout << "show the valume of vbag1 expect 10 got  : " << vbag1.getValume() <<endl;
-    cout << "show the valume of vbag2 expect 5 got   : " << vbag2.getValume() <<endl;
+    cout << "show the valume of vbag1 expect 10 got  : " << vbag1.getVolume() <<endl;
+    cout << "show the valume of vbag2 expect 5 got   : " << vbag2.getVolume() <<endl;
 
     cout <<"testing Bagage::getID" << endl;
 
     cout << "show the ID of vbag1 expect a got  : " << vbag1.getID() <<endl;
     cout << "show the ID of vbag2 expect b got  : " << vbag2.getID() <<endl;
 
-
+    /*
     cout <<"testing Bagage::changeValume" << endl;
 
-    cout << "show the valume of vbag1 expect 10 got  : " << vbag1.getValume() <<endl;
+    cout << "show the valume of vbag1 expect 10 got  : " << vbag1.getVolume() <<endl;
 
     cout << "changing the valume of vbag1 to 20" << endl;
 
     vbag1.changeValume(20);
 
     cout << "show the valume of vbag1 expect 20 got  : " << vbag1.getValume() <<endl;
-
+    */
 
 
     cout <<"----------testing the class VStorage-----------" << endl;
@@ -191,7 +192,7 @@ int main(){
 
     cout << "testing VStorage::collect" <<endl;
     cout << "collecting vbag1" <<endl;
-    Bagage cbag1 = vmyStorage.collect(vt1);
+    Bagage& cbag1 = vmyStorage.collect(vt1);
 
     cout << "getting the ID of cbag1 expect a got : " << cbag1.getID() << endl;
 

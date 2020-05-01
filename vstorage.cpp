@@ -14,7 +14,7 @@ using namespace std;
     {
         
         int indexInCasesVolumes;
-        Bagage bag;
+        Bagage &bag;
         
     };  
 
@@ -66,9 +66,9 @@ bool VStorage::isFull() const{
   * @param: the bagage.
   * @return: a ticket that is linked to the bagage.
 * */
-Ticket VStorage::deposit(Bagage bagToAdd){
+Ticket VStorage::deposit(Bagage &bagToAdd){
   
-    float valumeOfBag = bagToAdd.getValume();
+    float valumeOfBag = bagToAdd.getVolume();
     //stops the program if the storage does not have a big enough case
     assert(haveSpace(valumeOfBag));
     //the index of the case in the vector(Cases)
@@ -125,7 +125,7 @@ Ticket VStorage::deposit(Bagage bagToAdd){
   * @param: the ticket.
   * @return: the bagage
 * */
-Bagage VStorage::collect(Ticket T){
+Bagage& VStorage::collect(Ticket T){
     //if the storage is empty we can not collect any bagage 
     assert(_filledCases>0);
 
