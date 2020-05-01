@@ -27,17 +27,17 @@ typedef std::pair<Ticket,t_casev> t_entree;
 VStorage::VStorage(size_t nb){
   //the storage must have a capacity greater then 0
   assert(nb>0);
+
   _nbCases = nb;
   _filledCases = 0;
   _usingCase = 0;
 
-  for(int i = 0; i <= _nbCases ; i++){
+  //adding the cases to _valumes and _emptyCases after giving them a random value for the valume
+  for(int i = 0; i < _nbCases ; i++){
     float v; //the valume of the case
     v = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/100)); // a random value of the valume
-    
-
-    _casesVolumes[i] = v;
-    _emptyCases[i] = i;
+    _casesVolumes.push_back(v);
+    _emptyCases.push_back(i);
   }
 
 }
@@ -69,8 +69,8 @@ bool VStorage::isFull() const{
 Ticket VStorage::deposit(Bagage bagToAdd){
   
     float valumeOfBag = bagToAdd.getValume();
-    //stops the program if the storage if full
-    assert(!haveSpace(valumeOfBag));
+    //stops the program if the storage does not have a big enough case
+    assert(haveSpace(valumeOfBag));
     //the index of the case in the vector(Cases)
     int index = -1;
     float currentval;
@@ -97,11 +97,10 @@ Ticket VStorage::deposit(Bagage bagToAdd){
     //deleting the case chosen from _emptyCases
     _emptyCases.erase(_emptyCases.begin()+indexInEmptyCases);
 
-    //craeting a t_case and give it the bagage and the valume  //TO FIX
-    //t_casev caseToAdd;
-    //caseToAdd.valumeOfCase = currentval;
-    //caseToAdd.bag = bagToAdd;
-    //creating a new ticket
+    //craeting a t_case and give it the bagage and the valume 
+    t_casev caseToAdd = {currentval, bagToAdd};
+    
+    //creating a ticket
     Ticket T;
     t_casev caseToAdd = {index, bagToAdd};
 
@@ -152,12 +151,14 @@ Bagage VStorage::collect(Ticket T){
   * true if there is case bigger enough.
   * false if there is not.
 * */
-bool VStorage::haveSpace(float val){
+bool VStorage::haveSpace(float val) const{
   bool res = false;
 
+  //if the storage is not full we check the sizes of the cases
   if(!isFull()){
 
     int ind = _emptyCases.size();
+
     while ((ind >= 0) and (!res)){
       if(_casesVolumes[_emptyCases[ind]] >= val){
       res = true;
@@ -167,5 +168,21 @@ bool VStorage::haveSpace(float val){
   }
   
   return res;
+}
+
+/**
+ * @role: returns the vector _valumes to show all valumes of the storage
+ * @return: the vector _valumes
+ * */
+vector<float> VStorage::getValumes() const{
+  return _casesVolumes;
+}
+
+/**
+ * @role: returns the vector _emptyCases to show all valumes of the empty cases
+ * @return: the vector _emptyCases
+ * */
+vector<int> VStorage::getEmptyCases() const{
+  return _emptyCases;
 }
 

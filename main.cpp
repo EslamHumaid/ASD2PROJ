@@ -14,6 +14,25 @@
 
 using namespace std;
 
+//making a function that prints a vector
+
+void printFloatVector(vector<float> const &input)
+{
+	for (auto it = input.begin(); it != input.end(); it++){
+		cout << *it << ' ';
+	}
+    cout << " " <<endl;
+}
+
+void printIntVector(vector<int> const &input)
+{
+	for (auto it = input.begin(); it != input.end(); it++){
+		cout << *it << ' ';
+	}
+    cout << " " <<endl;
+}
+
+
 int main(){
     //craeting a storage with a capacity of 3 bagages
     Storage myStorage(3);
@@ -90,14 +109,100 @@ int main(){
 
 
     
-    cout <<"part 2" <<endl;
+    cout <<"testing the second part of the project" <<endl;
 
+    cout <<"----------testing the class Bagage-----------" << endl;
+
+    //creating a couple of Bagages
     Bagage vbag1("a",10);
     Bagage vbag2("b",5);
+    Bagage vbag3("c",200);
+    Bagage vbag4("d",4);
+    Bagage vbag5("e",30);
 
-    cout << "show valume : " << vbag1.getValume() <<endl;
-    
-    
+    cout <<"testing Bagage::getValume" << endl;
+    cout << "show the valume of vbag1 expect 10 got  : " << vbag1.getValume() <<endl;
+    cout << "show the valume of vbag2 expect 5 got   : " << vbag2.getValume() <<endl;
 
+    cout <<"testing Bagage::getID" << endl;
+
+    cout << "show the ID of vbag1 expect a got  : " << vbag1.getID() <<endl;
+    cout << "show the ID of vbag2 expect b got  : " << vbag2.getID() <<endl;
+
+
+    cout <<"testing Bagage::changeValume" << endl;
+
+    cout << "show the valume of vbag1 expect 10 got  : " << vbag1.getValume() <<endl;
+
+    cout << "changing the valume of vbag1 to 20" << endl;
+
+    vbag1.changeValume(20);
+
+    cout << "show the valume of vbag1 expect 20 got  : " << vbag1.getValume() <<endl;
+
+
+
+    cout <<"----------testing the class VStorage-----------" << endl;
+
+    //creating a VStorage
+    VStorage vmyStorage(4);
+
+    cout <<"testing VStorage::getValumes" << endl;
+
+    vector<float> listOfVector = vmyStorage.getValumes();
+
+    cout <<"showing the list of the valumes" << endl;
+    printFloatVector(listOfVector);
+
+    cout << "testing VStorage::isFull " <<endl;
+    cout << "before adding any bagage expect 0 got : " << vmyStorage.isFull() <<endl;
+
+    cout << "testing VStorage::deposit" <<endl;
+    cout << "adding vbag1 and vbag2 expected to work" <<endl;
+    Ticket vt1 = vmyStorage.deposit(vbag1);
+    Ticket vt2 = vmyStorage.deposit(vbag2);
+    cout << "vbag1 and vbag2 were added" <<endl;
+    /*
+    cout << "adding vbag3 expected not to work because vbag3 valume is 200" <<endl;
+    Ticket vt3 = vmyStorage.deposit(vbag3);
+    */
+
+    cout << "testing VStorage::getEmptyCases" <<endl;
+    cout <<"showing the list of the empty cases" << endl;
+
+    vector<int> listOfEmptyCases = vmyStorage.getEmptyCases();
+    printIntVector(listOfEmptyCases); //vbag1 and vbag2 took the smallest and least recently empty cases 
+
+    
+    cout << "adding vbag4 and vbag5 expected to work" <<endl;
+    Ticket vt4 = vmyStorage.deposit(vbag4);
+    Ticket vt5 = vmyStorage.deposit(vbag5);
+    cout << " vbag4 and vbag5 were added" <<endl;
+
+    cout << "testing VStorage::isFull " <<endl;
+    cout << "after adding 4 bagages expect 1 got : " << vmyStorage.isFull() <<endl;
+
+
+    cout << "testing VStorage::getEmptyCases" <<endl;
+    cout <<"showing the list of the empty cases expected to be empty" << endl;
+
+    listOfEmptyCases = vmyStorage.getEmptyCases();
+    printIntVector(listOfEmptyCases);
+
+    cout << "testing VStorage::collect" <<endl;
+    cout << "collecting vbag1" <<endl;
+    Bagage cbag1 = vmyStorage.collect(vt1);
+
+    cout << "getting the ID of cbag1 expect a got : " << cbag1.getID() << endl;
+
+    
+    cout << "testing VStorage::isFull " <<endl;
+    cout << "after coolecting 1 bagage expect 0 got : " << vmyStorage.isFull() <<endl;
+
+    cout << "testing VStorage::getEmptyCases" <<endl;
+    cout <<"showing the list of the empty cases expected to have one case" << endl;
+
+    listOfEmptyCases = vmyStorage.getEmptyCases();
+    printIntVector(listOfEmptyCases);
 
 }

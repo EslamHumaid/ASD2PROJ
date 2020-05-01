@@ -28,10 +28,12 @@ class Storage{
      * @param: the size of the storage 
      **/
     Storage(size_t);
-
+    
+    
     /**
-     * @role:(Destructor) distroying the object storage
-     * */
+        * Destructor
+        * @role: distroying the object storage
+    * */
     ~Storage();
 
     /**
