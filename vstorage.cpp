@@ -32,10 +32,10 @@ VStorage::VStorage(size_t nb){
   _filledCases = 0;
   _usingCase = 0;
 
-  //adding the cases to _valumes and _emptyCases after giving them a random value for the valume
+  //adding the cases to _casesVolumes and _emptyCases after giving them a random value for the volume
   for(int i = 0; i < _nbCases ; i++){
-    float v; //the valume of the case
-    v = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/100)); // a random value of the valume
+    float v; //the volume of the case
+    v = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/100)); // a random value of the volume
     _casesVolumes.push_back(v);
     _emptyCases.push_back(i);
   }
@@ -45,8 +45,8 @@ VStorage::VStorage(size_t nb){
   /**
     * @role: (constructor): create an instance of the class Storage with a list of pairs (ni,vi)
     * @param: the list of pairs (ni,vi) with:
-    * ni: is the number of cases that has a specific valume
-    * vi: the specific valume
+    * ni: is the number of cases that has a specific volume
+    * vi: the specific volume
   **/
 VStorage::VStorage(vector<pair<int,float>> list){
   _nbCases = 0;
@@ -71,8 +71,8 @@ VStorage::VStorage(vector<pair<int,float>> list){
   /**
     * @role: (constructor): create an instance of the class Storage with two lists vi and ni 
     * @param: the two lists with:
-    * ni: is the number of cases that has a specific valume
-    * vi: the specific valume
+    * ni: is the number of cases that has a specific volume
+    * vi: the specific volume
   **/
 VStorage::VStorage(vector<float> valum, vector<int>num){
   _nbCases = 0;
@@ -120,9 +120,9 @@ bool VStorage::isFull() const{
 * */
 Ticket VStorage::deposit(Bagage &bagToAdd){
   
-    float valumeOfBag = bagToAdd.getVolume();
+    float volumeOfBag = bagToAdd.getVolume();
     //stops the program if the storage does not have a big enough case
-    assert(haveSpace(valumeOfBag));
+    assert(haveSpace(volumeOfBag));
     //the index of the case in the vector(Cases)
     int index = -1;
     float currentval;
@@ -133,13 +133,13 @@ Ticket VStorage::deposit(Bagage &bagToAdd){
       
       if(index == -1){
 
-        if(caseVolume >= valumeOfBag){
+        if(caseVolume >= volumeOfBag){
           index = _emptyCases[i];
           indexInEmptyCases = i;
           currentval =  caseVolume;
         }
       }else{
-        if((caseVolume >= valumeOfBag) && (caseVolume < currentval) ){
+        if((caseVolume >= volumeOfBag) && (caseVolume < currentval) ){
           index = _emptyCases[i];
           indexInEmptyCases = i;
           currentval =  caseVolume;
@@ -156,7 +156,7 @@ Ticket VStorage::deposit(Bagage &bagToAdd){
     
     //creating a ticket
     Ticket T;
-    //craeting a t_case and give it the bagage and the valume
+    //craeting a t_case and give it the bagage and the volume
     t_casev caseToAdd = {index, bagToAdd};
 
     //adding the new bagage to the unordered map
@@ -200,8 +200,8 @@ Bagage& VStorage::collect(Ticket T){
 
 
 /**
-  * @role: verify whether the storage hase a case bigger enough for a certain valume.
-  * @param: the valume.
+  * @role: verify whether the storage hase a case bigger enough for a certain volume.
+  * @param: the volume.
   * @return: a boolean:
   * true if there is case bigger enough.
   * false if there is not.
@@ -226,15 +226,15 @@ bool VStorage::haveSpace(float val) const{
 }
 
 /**
- * @role: returns the vector _valumes to show all valumes of the storage
+ * @role: returns the vector _valumes to show all volumes of the storage
  * @return: the vector _valumes
  * */
-vector<float> VStorage::getValumes() const{
+vector<float> VStorage::getVolumes() const{
   return _casesVolumes;
 }
 
 /**
- * @role: returns the vector _emptyCases to show all valumes of the empty cases
+ * @role: returns the vector _emptyCases to show all volumes of the empty cases
  * @return: the vector _emptyCases
  * */
 vector<int> VStorage::getEmptyCases() const{

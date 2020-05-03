@@ -175,11 +175,11 @@ int main(){
 
 
    
-    cout <<"testing VStorage::getValumes" << endl;
+    cout <<"testing VStorage::getVolumes" << endl;
 
-    vector<float> listOfVector = vmyStorage.getValumes();
+    vector<float> listOfVector = vmyStorage.getVolumes();
 
-    cout <<"showing the list of the valumes" << endl;
+    cout <<"showing the list of the volumes" << endl;
     printFloatVector(listOfVector);
 
     cout << "testing VStorage::isFull " <<endl;
@@ -191,7 +191,7 @@ int main(){
     Ticket vt2 = vmyStorage.deposit(vbag2);
     cout << "vbag1 and vbag2 were added" <<endl;
     /*
-    cout << "adding vbag3 expected not to work because vbag3 valume is 200" <<endl;
+    cout << "adding vbag3 expected not to work because vbag3 volume is 200" <<endl;
     Ticket vt3 = vmyStorage.deposit(vbag3);
     */
 
@@ -235,9 +235,9 @@ int main(){
 
 
 
-    listOfVector = vmyStorage.getValumes();
+    listOfVector = vmyStorage.getVolumes();
 
-    cout <<"showing the list of the valumes" << endl;
+    cout <<"showing the list of the volumes" << endl;
     printFloatVector(listOfVector);
 
 }

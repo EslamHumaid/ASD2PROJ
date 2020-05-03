@@ -23,16 +23,16 @@ class VStorage{
     /**
      * @role: (constructor): create an instance of the class Storage with a list of paires (ni,vi)
      * @param: the list of paires (ni,vi) with:
-     * ni: is the number of cases that has a specific valume
-     * vi: the specific valume
+     * ni: is the number of cases that has a specific volume
+     * vi: the specific volume
      **/
     VStorage(std::vector<std::pair<int,float>>);
 
     /**
      * @role: (constructor): create an instance of the class Storage with two lists vi and ni 
      * @param: the two lists with:
-     * ni: is the number of cases that has a specific valume
-     * vi: the specific valume
+     * ni: is the number of cases that has a specific volume
+     * vi: the specific volume
      **/
     VStorage(std::vector<float> , std::vector<int>);
 
@@ -64,8 +64,8 @@ class VStorage{
     Bagage& collect(Ticket);
 
     /**
-     * @role: verify whether the storage hase a case bigger enough for a certain valume.
-     * @param: the valume.
+     * @role: verify whether the storage hase a case bigger enough for a certain volume.
+     * @param: the volume.
      * @return: a boolean:
      * true if there is case bigger enough.
      * false if there is not.
@@ -74,14 +74,14 @@ class VStorage{
 
 
     /**
-        * @role: returns the vector _valumes to show all valumes of the storage
-        * @return: the vector _valumes
+        * @role: returns the vector _casesVolumes to show all volumes of the storage
+        * @return: the vector _casesVolumes
     * */
-    std::vector<float> getValumes() const;
+    std::vector<float> getVolumes() const;
 
 
     /**
-        * @role: returns the vector _emptyCases to show all valumes of the empty cases
+        * @role: returns the vector _emptyCases to show all volumes of the empty cases
         * @return: the vector _emptyCases
     * */
     std::vector<int> getEmptyCases() const;
