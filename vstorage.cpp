@@ -49,6 +49,7 @@ VStorage::VStorage(size_t nb){
     * vi: the specific volume
   **/
 VStorage::VStorage(vector<pair<int,float>> list){
+  assert(list.size()>0);
   _nbCases = 0;
   _filledCases = 0;
   _usingCase = 0;
@@ -74,15 +75,16 @@ VStorage::VStorage(vector<pair<int,float>> list){
     * ni: is the number of cases that has a specific volume
     * vi: the specific volume
   **/
-VStorage::VStorage(vector<float> valum, vector<int>num){
+VStorage::VStorage(vector<float> volume, vector<int>num){
+  assert(volume.size()==num.size());
   _nbCases = 0;
   _filledCases = 0;
   _usingCase = 0;
 
   int indOfCase =0;
 
-  for(int i = 0; i < valum.size();i++){
-    float v = valum.at(i);
+  for(int i = 0; i < volume.size();i++){
+    float v = volume.at(i);
     for(int j = 0; j < num.at(i); j++ ){
 
       _casesVolumes.push_back(v);
@@ -234,7 +236,7 @@ vector<float> VStorage::getVolumes() const{
 }
 
 /**
- * @role: returns the vector _emptyCases to show all volumes of the empty cases
+ * @role: returns the vector _emptyCases to show all indices of the empty cases
  * @return: the vector _emptyCases
  * */
 vector<int> VStorage::getEmptyCases() const{

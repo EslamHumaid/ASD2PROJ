@@ -81,7 +81,7 @@ class VStorage{
 
 
     /**
-        * @role: returns the vector _emptyCases to show all volumes of the empty cases
+        * @role: returns the vector _emptyCases to show all indices of the empty cases
         * @return: the vector _emptyCases
     * */
     std::vector<int> getEmptyCases() const;
