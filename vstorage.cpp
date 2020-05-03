@@ -20,8 +20,11 @@ using namespace std;
 
 
 typedef std::pair<Ticket,t_casev> t_entree;
+
+
 /**
-  * @role: (constructor): create an instance of the class Storage with a specific capacity
+  * @role: (constructor): create an instance of the class VStorage with a specific number of
+  *         cases and a random value of volumes for each case
   * @param: the size of the storage 
 **/
 VStorage::VStorage(size_t nb){
@@ -35,7 +38,7 @@ VStorage::VStorage(size_t nb){
   //adding the cases to _casesVolumes and _emptyCases after giving them a random value for the volume
   for(int i = 0; i < _nbCases ; i++){
     float v; //the volume of the case
-    v = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/100)); // a random value of the volume
+    v = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/100)); // a random value for the volume
     _casesVolumes.push_back(v);
     _emptyCases.push_back(i);
   }
@@ -43,27 +46,33 @@ VStorage::VStorage(size_t nb){
 }
 
   /**
-    * @role: (constructor): create an instance of the class Storage with a list of pairs (ni,vi)
+    * @role: (constructor): create an instance of the class VStorage with a list of pairs (ni,vi)
     * @param: the list of pairs (ni,vi) with:
     * ni: is the number of cases that has a specific volume
     * vi: the specific volume
   **/
 VStorage::VStorage(vector<pair<int,float>> list){
+  //the storage must have a capacity greater then 0
   assert(list.size()>0);
+
   _nbCases = 0;
   _filledCases = 0;
   _usingCase = 0;
 
   int indOfCase =0;
 
-  for(int i = 0; i < list.size();i++){
+  for(int i = 0; i < list.size();i++){ //going through each volume
     float v = list.at(i).second;
-    for(int j = 0; j < list.at(i).first ; j++ ){
-
+    for(int j = 0; j < list.at(i).first ; j++ ){ //creating the cases with the specific volume
+      
+      //adding the case to the vector of all cases (_casesVolumes)
       _casesVolumes.push_back(v);
+      //adding the indix of the case to the vector of empty cases (_casesVolumes)
       _emptyCases.push_back(indOfCase);
 
+      //incressing the indOfCase
       indOfCase++;
+      //incressing the number of _nbCases
       _nbCases++;
     }
   }
@@ -76,21 +85,32 @@ VStorage::VStorage(vector<pair<int,float>> list){
     * vi: the specific volume
   **/
 VStorage::VStorage(vector<float> volume, vector<int>num){
+
+  //the storage must have a capacity greater then 0
+  assert(volume.size()>0);
+  //the size of the two lists must be equal
   assert(volume.size()==num.size());
+
   _nbCases = 0;
   _filledCases = 0;
   _usingCase = 0;
 
   int indOfCase =0;
 
-  for(int i = 0; i < volume.size();i++){
+  for(int i = 0; i < volume.size();i++){ //going through each volume
     float v = volume.at(i);
-    for(int j = 0; j < num.at(i); j++ ){
+    for(int j = 0; j < num.at(i); j++ ){//creating the cases with the specific volume
 
+      //adding the case to the vector of all cases (_casesVolumes)
       _casesVolumes.push_back(v);
+
+      //adding the indix of the case to the vector of empty cases (_casesVolumes)
       _emptyCases.push_back(indOfCase);
 
+      //incressing the indOfCase
       indOfCase++;
+      
+      //incressing the number of _nbCases
       _nbCases++;
     }
   }
@@ -123,28 +143,32 @@ bool VStorage::isFull() const{
 Ticket VStorage::deposit(Bagage &bagToAdd){
   
     float volumeOfBag = bagToAdd.getVolume();
+
     //stops the program if the storage does not have a big enough case
     assert(haveSpace(volumeOfBag));
-    //the index of the case in the vector(Cases)
+
+    //the index of the case in the vector(_casesVolumes)
     int index = -1;
-    float currentval;
+    float currentvol;
     int indexInEmptyCases;
     float caseVolume;
+
     for(int i = 0 ; i<=_emptyCases.size() ; i++){
       caseVolume = _casesVolumes[_emptyCases[i]];
       
-      if(index == -1){
+      if(index == -1){ //if we have not found a big enough case yet
 
         if(caseVolume >= volumeOfBag){
           index = _emptyCases[i];
           indexInEmptyCases = i;
-          currentval =  caseVolume;
+          currentvol =  caseVolume;
         }
-      }else{
-        if((caseVolume >= volumeOfBag) && (caseVolume < currentval) ){
+      }else{//if we have already found a big enough case 
+            //we keep looking until we find the smallest case that is big enough
+        if((caseVolume >= volumeOfBag) && (caseVolume < currentvol) ){
           index = _emptyCases[i];
           indexInEmptyCases = i;
-          currentval =  caseVolume;
+          currentvol =  caseVolume;
         }
       }
 
@@ -202,10 +226,10 @@ Bagage& VStorage::collect(Ticket T){
 
 
 /**
-  * @role: verify whether the storage hase a case bigger enough for a certain volume.
+  * @role: verify whether the storage hase a case big enough for a certain volume.
   * @param: the volume.
   * @return: a boolean:
-  * true if there is case bigger enough.
+  * true if there is case big enough.
   * false if there is not.
 * */
 bool VStorage::haveSpace(float val) const{
@@ -228,8 +252,8 @@ bool VStorage::haveSpace(float val) const{
 }
 
 /**
- * @role: returns the vector _valumes to show all volumes of the storage
- * @return: the vector _valumes
+ * @role: returns the vector _casesVolumes to show all volumes of the storage
+ * @return: the vector _casesVolumes
  * */
 vector<float> VStorage::getVolumes() const{
   return _casesVolumes;

@@ -15,7 +15,7 @@
 
 using namespace std;
 
-//making a function that prints a vector
+//making a function that prints a vector<float>
 
 void printFloatVector(vector<float> const &input)
 {
@@ -25,6 +25,7 @@ void printFloatVector(vector<float> const &input)
     cout << " " <<endl;
 }
 
+//making a function that prints a vector<int>
 void printIntVector(vector<int> const &input)
 {
 	for (auto it = input.begin(); it != input.end(); it++){
@@ -111,6 +112,8 @@ int main(){
 
     
     cout <<"testing the second part of the project" <<endl;
+    cout << " " << endl;
+    cout << " " << endl;
 
     cout <<"----------testing the class Bagage-----------" << endl;
 
@@ -124,12 +127,15 @@ int main(){
     cout <<"testing Bagage::getValume" << endl;
     cout << "show the valume of vbag1 expect 10 got  : " << vbag1.getVolume() <<endl;
     cout << "show the valume of vbag2 expect 5 got   : " << vbag2.getVolume() <<endl;
+    cout << " " << endl;
+    cout << " " << endl;
 
     cout <<"testing Bagage::getID" << endl;
 
     cout << "show the ID of vbag1 expect a got  : " << vbag1.getID() <<endl;
     cout << "show the ID of vbag2 expect b got  : " << vbag2.getID() <<endl;
-
+    cout << " " << endl;
+    cout << " " << endl;
     /*
     cout <<"testing Bagage::changeValume" << endl;
 
@@ -144,16 +150,18 @@ int main(){
 
 
     cout <<"----------testing the class VStorage-----------" << endl;
+    cout << " " << endl;
+    cout << " " << endl;
 
     //creating a VStorage
 
     /*
-    //using the constructor VStorage(size_t)
+    cout<<"using the constructor VStorage(size_t)"<<endl;
     VStorage vmyStorage(4);
     */
 
    /*
-   //using the constructor VStorage(std::vector<pair<int,float>>)
+    cout<<"using the constructor VStorage(std::vector<pair<int,float>>) "<<endl;
     vector<pair<int,float>> list;
     list.push_back(pair<int,float>(2,10));
     list.push_back(pair<int,float>(2,100));
@@ -161,8 +169,8 @@ int main(){
     VStorage vmyStorage(list);
     */
 
-   //using the constructor VStorage(std::vector<float> , std::vector<int>);
-
+   
+   cout<<"using the constructor VStorage(std::vector<float> , std::vector<int>)" <<endl;
    vector<float> vi;
    vi.push_back(10);
    vi.push_back(100);
@@ -171,29 +179,36 @@ int main(){
    ni.push_back(2);
 
    VStorage vmyStorage(vi,ni);
-
+    
+    cout << " " << endl;
+    cout << " " << endl;
 
 
    
     cout <<"testing VStorage::getVolumes" << endl;
 
     vector<float> listOfVector = vmyStorage.getVolumes();
-
+    
     cout <<"showing the list of the volumes" << endl;
     printFloatVector(listOfVector);
 
+    cout << " " << endl;
+    cout << " " << endl;
+
     cout << "testing VStorage::isFull " <<endl;
     cout << "before adding any bagage expect 0 got : " << vmyStorage.isFull() <<endl;
+
+    cout << " " << endl;
+    cout << " " << endl;
 
     cout << "testing VStorage::deposit" <<endl;
     cout << "adding vbag1 and vbag2 expected to work" <<endl;
     Ticket vt1 = vmyStorage.deposit(vbag1);
     Ticket vt2 = vmyStorage.deposit(vbag2);
     cout << "vbag1 and vbag2 were added" <<endl;
-    /*
-    cout << "adding vbag3 expected not to work because vbag3 volume is 200" <<endl;
-    Ticket vt3 = vmyStorage.deposit(vbag3);
-    */
+
+    cout << " " << endl;
+    cout << " " << endl;
 
     cout << "testing VStorage::getEmptyCases" <<endl;
     cout <<"showing the list of the empty cases" << endl;
@@ -201,14 +216,22 @@ int main(){
     vector<int> listOfEmptyCases = vmyStorage.getEmptyCases();
     printIntVector(listOfEmptyCases); //vbag1 and vbag2 took the smallest and least recently empty cases 
 
+    cout << " " << endl;
+    cout << " " << endl;
     
     cout << "adding vbag4 and vbag5 expected to work" <<endl;
     Ticket vt4 = vmyStorage.deposit(vbag4);
     Ticket vt5 = vmyStorage.deposit(vbag5);
     cout << " vbag4 and vbag5 were added" <<endl;
 
+    cout << " " << endl;
+    cout << " " << endl;
+
     cout << "testing VStorage::isFull " <<endl;
     cout << "after adding 4 bagages expect 1 got : " << vmyStorage.isFull() <<endl;
+
+    cout << " " << endl;
+    cout << " " << endl;
 
 
     cout << "testing VStorage::getEmptyCases" <<endl;
@@ -217,21 +240,36 @@ int main(){
     listOfEmptyCases = vmyStorage.getEmptyCases();
     printIntVector(listOfEmptyCases);
 
+    cout << " " << endl;
+    cout << " " << endl;
+
     cout << "testing VStorage::collect" <<endl;
     cout << "collecting vbag1" <<endl;
     Bagage& cbag1 = vmyStorage.collect(vt1);
 
+    cout << " " << endl;
+    cout << " " << endl;
+
     cout << "getting the ID of cbag1 expect a got : " << cbag1.getID() << endl;
+
+    cout << " " << endl;
+    cout << " " << endl;
 
     
     cout << "testing VStorage::isFull " <<endl;
     cout << "after coolecting 1 bagage expect 0 got : " << vmyStorage.isFull() <<endl;
+
+    cout << " " << endl;
+    cout << " " << endl;
 
     cout << "testing VStorage::getEmptyCases" <<endl;
     cout <<"showing the list of the empty cases expected to have one case" << endl;
 
     listOfEmptyCases = vmyStorage.getEmptyCases();
     printIntVector(listOfEmptyCases);
+
+    cout << " " << endl;
+    cout << " " << endl;
 
 
 

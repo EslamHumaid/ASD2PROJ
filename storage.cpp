@@ -14,7 +14,7 @@
 
 using namespace std;
 
-  // A struct to represnt the cases by the bag in them and there index in the vector
+  // A struct to represnt the cases by the bag in them and there index in the vector _cases
   typedef struct 
     {
         
@@ -41,8 +41,7 @@ Storage::Storage(size_t nb){
 }
 
 /**
-* Destructor
-* @role: distroying the object storage
+* @role: (Destructor) distroying the object storage
 * since there aren't any dynamic allocations, no actions are needed.
 * */
 Storage::~Storage(){}
@@ -60,14 +59,14 @@ bool Storage::isFull() const{
 
 
 /**
-  * @role: takes a bagage and puts it in a Case.
+  * @role: takes a bagage and puts it in a Case in the storage.
   * @param: the bagage.
   * @return: a ticket that is linked to the bagage.
 * */
 Ticket Storage::deposit(bagage bagToAdd){
     
     assert(!isFull());  //stops the program if the storage if full
-    int index;  //the index of the case in the vector(Cases)
+    int index;  //the index of the case in the vector(_cases)
 
 
     //verifing whether all the cases were used for the first time or not
@@ -82,7 +81,7 @@ Ticket Storage::deposit(bagage bagToAdd){
         _emptyCases.pop();
     }
 
-    //creating a t_case and giving it the bagage and the index in the vector(Cases)
+    //creating a t_case and giving it the bagage and the index in the vector(_cases)
     t_case caseToAdd;
     caseToAdd.indexInVect = index;
     caseToAdd.bag = bagToAdd;

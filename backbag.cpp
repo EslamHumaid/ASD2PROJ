@@ -4,13 +4,13 @@
 using namespace std;
 
 /**
- * @role: (constructor): create an instance of the class Bagage 
- * @param: string (ID) , float (the valume)  
+ * @role: (constructor): create an instance of the class Bagage of the type Backbag
+ * @param: string (ID) , float (the volume)  
 **/
-Backbag::Backbag(string id , float val){
+Backbag::Backbag(string id , float vol){
 
     _ID = id;
-    _volume = val;
+    _volume = vol;
 }
 
 /**
@@ -22,7 +22,7 @@ Backbag::~Backbag(){}
 
 
 /**
- *@role: returns the ID of the bagage
+ *@role: returns the ID of the backbag
  *@return: string: the ID 
 * */
 string Backbag::getID() {
@@ -31,8 +31,8 @@ string Backbag::getID() {
 
 
 /**
- *@role: returns the valume of the bagage
- *@return: float: the valume 
+ *@role: returns the volume of the backbag
+ *@return: float: the volume 
 * */
 float Backbag::getVolume() {
     return _volume;
@@ -40,12 +40,12 @@ float Backbag::getVolume() {
 
 
 /**
- *@role: changing the valume of the bagage
- *@parm: the new valume 
+ *@role: changing the volume of the backbag
+ *@parm: the new volume 
 * */
 /*
-void Bagage::changeValume(float newval){
+void Backbag::changeVolume(float newvol){
 
-    _valume = newval;
+    _volume = newvol;
 }
 */

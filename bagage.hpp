@@ -6,7 +6,17 @@
 class Bagage{
 
 public:
+/**
+ *@role: returns the ID of the backbag
+ *@return: string: the ID 
+* */
 virtual std::string getID()=0;
+
+
+/**
+ *@role: returns the volume of the backbag
+ *@return: float: the volume 
+* */
 virtual float getVolume()=0;
 
 

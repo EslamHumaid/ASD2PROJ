@@ -38,7 +38,7 @@ class Ticket{
     bool operator==(Ticket const& autre) const; 
 
     /**
-     * Role: overriding the operator != (testing the inequality of two objects of the class Ticket )
+     * @role: overriding the operator != (testing the inequality of two objects of the class Ticket )
      * */
     bool operator!=(Ticket const& autre) const; 
 

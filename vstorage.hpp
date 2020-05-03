@@ -15,7 +15,8 @@ class VStorage{
 
 
     /**
-     * @role: (constructor): create an instance of the class Storage with a specific capacity
+     * @role: (constructor): create an instance of the class Storage with a a specific number of
+  *         cases and a random value of volumes for each case.
      * @param: the size of the storage 
      **/
     VStorage(size_t);
@@ -64,10 +65,10 @@ class VStorage{
     Bagage& collect(Ticket);
 
     /**
-     * @role: verify whether the storage hase a case bigger enough for a certain volume.
+     * @role: verify whether the storage hase a case big enough for a certain volume.
      * @param: the volume.
      * @return: a boolean:
-     * true if there is case bigger enough.
+     * true if there is case big enough.
      * false if there is not.
      * */
     bool haveSpace(float) const;

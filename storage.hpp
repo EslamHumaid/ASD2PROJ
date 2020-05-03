@@ -26,13 +26,12 @@ class Storage{
     /**
      * @role: (constructor): create an instance of the class Storage with a specific capacity
      * @param: the size of the storage 
-     **/
+    **/
     Storage(size_t);
     
     
     /**
-        * Destructor
-        * @role: distroying the object storage
+    * @role:(Destructor) distroying the object storage
     * */
     ~Storage();
 

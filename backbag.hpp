@@ -9,37 +9,37 @@ class Backbag : public Bagage{
     public:
 
     /**
-     * @role: (constructor): create an instance of the class Bagage 
-     * @param: string (ID) , float (the valume)  
+     * @role: (constructor): create an instance of the class Bagage of the type Backbag
+     * @param: string (ID) , float (the volume)  
     **/
     Backbag(std::string , float );
 
 
     /**
      * Destructor
-     * @role: distroying the object Bagage
+     * @role: distroying the object backbag
     * */
     ~Backbag();
 
     /**
-     *@role: returns the ID of the bagage
+     *@role: returns the ID of the backbag
      *@return: string: the ID 
     * */
     std::string getID() ;
 
     /**
-     *@role: returns the valume of the bagage
-     *@return: float: the valume 
+     *@role: returns the volume of the backbag
+     *@return: float: the volume 
     * */
     float getVolume() ;
 
 
     /*
     /
-     *@role: changing the valume of the bagage
-     *@parm: the new valume 
+     *@role: changing the volume of the bagage
+     *@parm: the new volume 
     
-    void changeValume(float);
+    void changeVolume(float);
     */
 
 };
