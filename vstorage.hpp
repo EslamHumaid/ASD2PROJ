@@ -106,7 +106,7 @@ class VStorage{
     size_t _filledCases;
     //vector containing the indices of the empty case in _casesVolumes, used to choose the oldest used case to fill first
     std::vector<int> _emptyCases;
-    //A vector of the valume of eache case
+    //A vector of the volume of eache case
     std::vector<float> _casesVolumes;
  
 };

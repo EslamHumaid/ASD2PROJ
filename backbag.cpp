@@ -38,14 +38,3 @@ float Backbag::getVolume() {
     return _volume;
 }
 
-
-/**
- *@role: changing the volume of the backbag
- *@parm: the new volume 
-* */
-/*
-void Backbag::changeVolume(float newvol){
-
-    _volume = newvol;
-}
-*/

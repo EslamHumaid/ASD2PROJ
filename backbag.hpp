@@ -34,13 +34,6 @@ class Backbag : public Bagage{
     float getVolume() ;
 
 
-    /*
-    /
-     *@role: changing the volume of the bagage
-     *@parm: the new volume 
-    
-    void changeVolume(float);
-    */
 
 };
 

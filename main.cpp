@@ -124,9 +124,9 @@ int main(){
     Backbag vbag4("d",4);
     Backbag vbag5("e",30);
 
-    cout <<"testing Bagage::getValume" << endl;
-    cout << "show the valume of vbag1 expect 10 got  : " << vbag1.getVolume() <<endl;
-    cout << "show the valume of vbag2 expect 5 got   : " << vbag2.getVolume() <<endl;
+    cout <<"testing Bagage::getVolume" << endl;
+    cout << "show the volume of vbag1 expect 10 got  : " << vbag1.getVolume() <<endl;
+    cout << "show the volume of vbag2 expect 5 got   : " << vbag2.getVolume() <<endl;
     cout << " " << endl;
     cout << " " << endl;
 
@@ -136,17 +136,7 @@ int main(){
     cout << "show the ID of vbag2 expect b got  : " << vbag2.getID() <<endl;
     cout << " " << endl;
     cout << " " << endl;
-    /*
-    cout <<"testing Bagage::changeValume" << endl;
 
-    cout << "show the valume of vbag1 expect 10 got  : " << vbag1.getVolume() <<endl;
-
-    cout << "changing the valume of vbag1 to 20" << endl;
-
-    vbag1.changeValume(20);
-
-    cout << "show the valume of vbag1 expect 20 got  : " << vbag1.getValume() <<endl;
-    */
 
 
     cout <<"----------testing the class VStorage-----------" << endl;
