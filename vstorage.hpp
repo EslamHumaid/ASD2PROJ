@@ -14,15 +14,9 @@ class VStorage{
     public:
 
 
-    /**
-     * @role: (constructor): create an instance of the class Storage with a a specific number of
-  *         cases and a random value of volumes for each case.
-     * @param: the size of the storage 
-     **/
-    VStorage(size_t);
 
     /**
-     * @role: (constructor): create an instance of the class Storage with a list of paires (ni,vi)
+     * @role: (constructor): create an instance of the class VStorage with a list of paires (ni,vi)
      * @param: the list of paires (ni,vi) with:
      * ni: is the number of cases that has a specific volume
      * vi: the specific volume
@@ -30,7 +24,7 @@ class VStorage{
     VStorage(std::vector<std::pair<int,float>>);
 
     /**
-     * @role: (constructor): create an instance of the class Storage with two lists vi and ni 
+     * @role: (constructor): create an instance of the class VStorage with two lists vi and ni 
      * @param: the two lists with:
      * ni: is the number of cases that has a specific volume
      * vi: the specific volume
@@ -38,7 +32,7 @@ class VStorage{
     VStorage(std::vector<float> , std::vector<int>);
 
     /**
-     * @role:(Destructor) distroying the object storage
+     * @role:(Destructor) distroying the object VStorage
      * */
     ~VStorage();
 

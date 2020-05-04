@@ -155,11 +155,6 @@ int main(){
 
     //creating a VStorage
 
-    /*
-    cout<<"using the constructor VStorage(size_t)"<<endl;
-    VStorage vmyStorage(4);
-    */
-
    /*
     cout<<"using the constructor VStorage(std::vector<pair<int,float>>) "<<endl;
     vector<pair<int,float>> list;

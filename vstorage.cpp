@@ -22,28 +22,6 @@ using namespace std;
 typedef std::pair<Ticket,t_casev> t_entree;
 
 
-/**
-  * @role: (constructor): create an instance of the class VStorage with a specific number of
-  *         cases and a random value of volumes for each case
-  * @param: the size of the storage 
-**/
-VStorage::VStorage(size_t nb){
-  //the storage must have a capacity greater then 0
-  assert(nb>0);
-
-  _nbCases = nb;
-  _filledCases = 0;
-
-  //adding the cases to _casesVolumes and _emptyCases after giving them a random value for the volume
-  for(int i = 0; i < _nbCases ; i++){
-    float v; //the volume of the case
-    v = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX/100)); // a random value for the volume
-    _casesVolumes.push_back(v);
-    _emptyCases.push_back(i);
-  }
-
-}
-
   /**
     * @role: (constructor): create an instance of the class VStorage with a list of pairs (ni,vi)
     * @param: the list of pairs (ni,vi) with:
