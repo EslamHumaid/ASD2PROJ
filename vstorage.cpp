@@ -1,3 +1,11 @@
+/**
+* @file:  vstorage.cpp
+* @author: Eslam HUMAID , Abrahim BAMATRAF Groupe 485
+* @date: 04/05/2020
+* @git: https://github.com/EslamHumaid/ASD2PROJ
+**/
+
+
 #include "ticket.hpp"
 #include "vstorage.hpp"
 #include "bagage.hpp"
@@ -9,21 +17,21 @@
 
 using namespace std;
 
-  // A struct to represnt the cases by the bag in them and there index in the vector
-   struct t_casev 
-    {
-        
-        int indexInCasesVolumes;
-        Bagage &bag;
-        
-    };  
+// A struct to represnt the cases by the bag in them and there index in the vector
+struct t_casev {
+      
+      int indexInCasesVolumes;
+      Bagage &bag;
+
+};  
 
 
-typedef std::pair<Ticket,t_casev> t_entree;
+typedef std::pair<Ticket,t_casev> t_entree; //an entry in the map
 
 
   /**
     * @role: (constructor): create an instance of the class VStorage with a list of pairs (ni,vi)
+    * @pre: The list must not be empty.
     * @param: the list of pairs (ni,vi) with:
     * ni: is the number of cases that has a specific volume
     * vi: the specific volume
@@ -32,6 +40,7 @@ VStorage::VStorage(vector<pair<int,float>> list){
   //the storage must have a capacity greater then 0
   assert(list.size()>0);
 
+  //initializing the attributs
   _nbCases = 0;
   _filledCases = 0;
   int indOfCase =0;
@@ -55,6 +64,7 @@ VStorage::VStorage(vector<pair<int,float>> list){
 
   /**
     * @role: (constructor): create an instance of the class Storage with two lists vi and ni 
+    * @pre: the two lists must have the same size but they must not be empty.
     * @param: the two lists with:
     * ni: is the number of cases that has a specific volume
     * vi: the specific volume
@@ -111,6 +121,7 @@ bool VStorage::isFull() const{
 
 /**
   * @role: takes a bagage and puts it in a Case.
+  * @pre: the storage must have enough space for the bag.
   * @param: the bagage.
   * @return: a ticket that is linked to the bagage.
 * */
@@ -121,13 +132,13 @@ Ticket VStorage::deposit(Bagage &bagToAdd){
     //stops the program if the storage does not have a big enough case
     assert(haveSpace(volumeOfBag));
 
-    //the index of the case in the vector(_casesVolumes)
-    int index = -1;
-    float currentvol;
-    int indexInEmptyCases;
-    float caseVolume;
+    
+    int index = -1;  //the index of the case in the vector(_casesVolumes)
+    float currentvol; //the current volume to compare with each volume
+    int indexInEmptyCases; //the index of the case used to add it in _emptyCases
+    float caseVolume; //the volume of the case
 
-    for(int i = 0 ; i<=_emptyCases.size() ; i++){
+    for(int i = 0 ; i<=_emptyCases.size() ; i++){ //going through the empty cases
       caseVolume = _casesVolumes[_emptyCases[i]];
       
       if(index == -1){ //if we have not found a big enough case yet
@@ -139,7 +150,10 @@ Ticket VStorage::deposit(Bagage &bagToAdd){
         }
       }else{//if we have already found a big enough case 
             //we keep looking until we find the smallest case that is big enough
-        if((caseVolume >= volumeOfBag) && (caseVolume < currentvol) ){
+        if((caseVolume >= volumeOfBag) && (caseVolume < currentvol) ){ 
+          //since _emptyCases is ordered by time of collecting, 
+          //the first case of each volume is the only one that may be choosed as optimal case
+          //so in the end, we would have found the case with the minimal enough volume and the least recently used.
           index = _emptyCases[i];
           indexInEmptyCases = i;
           currentvol =  caseVolume;
@@ -156,7 +170,7 @@ Ticket VStorage::deposit(Bagage &bagToAdd){
     
     //creating a ticket
     Ticket T;
-    //craeting a t_case and give it the bagage and the volume
+    //creating a t_case and giving it the bagage and the index of the case in _casesVolumes
     t_casev caseToAdd = {index, bagToAdd};
 
     //adding the new bagage to the unordered map
@@ -172,7 +186,8 @@ Ticket VStorage::deposit(Bagage &bagToAdd){
 }
 
 /**
-  * @role:takes a ticket and retuen the bagage linked to the ticket.
+  * @role:takes a ticket and returns the bagage linked to the ticket.
+  * @pre: the storage should not be empty.
   * @param: the ticket.
   * @return: the bagage
 * */
@@ -180,7 +195,7 @@ Bagage& VStorage::collect(Ticket T){
     //if the storage is empty we can not collect any bagage 
     assert(_filledCases>0);
 
-    //searching the unordered map (storage) for the bagage linked to tickit (T)
+    //searching the unordered map (storage) for the bagage linked to ticket (T)
     t_casev obtainedCase = _storage.at(T);
     //adding the index of the empty case to the queue(emptyCases)
     _emptyCases.push_back(obtainedCase.indexInCasesVolumes);
@@ -199,7 +214,7 @@ Bagage& VStorage::collect(Ticket T){
 
 
 /**
-  * @role: verify whether the storage hase a case big enough for a certain volume.
+  * @role: verify whether the storage has a case big enough for a certain volume.
   * @param: the volume.
   * @return: a boolean:
   * true if there is case big enough.
@@ -208,7 +223,7 @@ Bagage& VStorage::collect(Ticket T){
 bool VStorage::haveSpace(float val) const{
   bool res = false;
 
-  //if the storage is not full we check the sizes of the cases
+  //if the storage is not full we check the volumes of the empty cases
   if(!isFull()){
 
     int ind = _emptyCases.size();

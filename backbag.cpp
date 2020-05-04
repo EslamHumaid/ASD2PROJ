@@ -1,3 +1,10 @@
+/**
+* @file:  backbag.cpp
+* @author: Eslam HUMAID , Abrahim BAMATRAF Groupe 485
+* @date: 04/05/2020
+* @git: https://github.com/EslamHumaid/ASD2PROJ
+**/
+
 #include "backbag.hpp"
 #include<iostream>
 

@@ -1,3 +1,11 @@
+/**
+* @file:  vstorage.hpp
+* @author: Eslam HUMAID , Abrahim BAMATRAF Groupe 485
+* @date: 04/05/2020
+* @git: https://github.com/EslamHumaid/ASD2PROJ
+**/
+
+
 #ifndef DEF_VSTORAGE
 #define DEF_VSTORAGE
 
@@ -17,6 +25,7 @@ class VStorage{
 
     /**
      * @role: (constructor): create an instance of the class VStorage with a list of paires (ni,vi)
+     * @pre: The list must not be empty.
      * @param: the list of paires (ni,vi) with:
      * ni: is the number of cases that has a specific volume
      * vi: the specific volume
@@ -25,6 +34,7 @@ class VStorage{
 
     /**
      * @role: (constructor): create an instance of the class VStorage with two lists vi and ni 
+     * @pre: the two lists must have the same size but they must not be empty.
      * @param: the two lists with:
      * ni: is the number of cases that has a specific volume
      * vi: the specific volume
@@ -46,6 +56,7 @@ class VStorage{
 
      /**
      * @role: takes a bagage and puts it in a Case in the storage.
+     * @pre: the storage must have enough space for the bag.
      * @param: the bagage.
      * @return: a ticket that is linked to the bagage.
      * */
@@ -53,6 +64,7 @@ class VStorage{
 
     /**
      * @role:takes a ticket and returns the bagage linked to the ticket.
+     * @pre: the storage should not be empty.
      * @param: the ticket.
      * @return: the bagage
      * */
@@ -62,7 +74,7 @@ class VStorage{
      * @role: verify whether the storage hase a case big enough for a certain volume.
      * @param: the volume.
      * @return: a boolean:
-     * true if there is case big enough.
+     * true if there is a big enough case.
      * false if there is not.
      * */
     bool haveSpace(float) const;
@@ -87,9 +99,8 @@ class VStorage{
     
     private:
 
-    // A struct to represnt the cases by the bag in them and their volume
-    struct t_casev 
-    {
+    // A struct to represnt the cases by the bag in them and their index in _casesVolumes
+    struct t_casev {
         
         int indexInCasesVolumes;
         Bagage &bag;
@@ -98,16 +109,12 @@ class VStorage{
 
 
 
-    // an unordered map to link each ticket and it's the bagage 
-    std::unordered_map<Ticket,t_casev, Ticket::ticketHasher> _storage;
-    //the number of cases in the storage(capacity)
-    size_t _nbCases;
-    //the number of occupied cases 
-    size_t _filledCases;
-    //vector containing the indices of the empty case in _casesVolumes, used to choose the oldest used case to fill first
-    std::vector<int> _emptyCases;
-    //A vector of the volume of eache case
-    std::vector<float> _casesVolumes;
+    
+    std::unordered_map<Ticket,t_casev, Ticket::ticketHasher> _storage; // an unordered map to link each ticket and its bagage 
+    size_t _nbCases;   //the number of cases in the storage(capacity)
+    size_t _filledCases;   //the number of occupied cases 
+    std::vector<int> _emptyCases;   //vector containing the indices of the empty cases in _casesVolumes, used to choose the oldest used case to fill first
+    std::vector<float> _casesVolumes;   //A vector of volumes to represent all the cases
  
 };
 

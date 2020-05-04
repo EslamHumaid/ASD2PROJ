@@ -1,7 +1,7 @@
 /**
 * @file:  main.cpp
 * @author: Eslam HUMAID , Abrahim BAMATRAF Groupe 485
-* @date: 06/04/2020
+* @date: 04/05/2020
 * @git: https://github.com/EslamHumaid/ASD2PROJ
 **/
 
@@ -36,6 +36,7 @@ void printIntVector(vector<int> const &input)
 
 
 int main(){
+    cout << "-----------Part 1:----------------" << endl;
     //craeting a storage with a capacity of 3 bagages
     Storage myStorage(3);
     //creating 4 different bagages
@@ -109,9 +110,11 @@ int main(){
     cout << "collecting the bagage linked to t2 expect 1 got : " << myStorage.collect(t2) << endl;
     cout << "collecting the bagage linked to t3 expect 4 got : " << myStorage.collect(t3) << endl;
 
+    cout << " " << endl;
+    cout << " " << endl;
 
     
-    cout <<"testing the second part of the project" <<endl;
+    cout <<"--------------Part 2:---------------" <<endl;
     cout << " " << endl;
     cout << " " << endl;
 
@@ -196,7 +199,7 @@ int main(){
     cout << " " << endl;
 
     cout << "testing VStorage::getEmptyCases" <<endl;
-    cout <<"showing the list of the empty cases" << endl;
+    cout <<"showing the indices of the empty cases" << endl;
 
     vector<int> listOfEmptyCases = vmyStorage.getEmptyCases();
     printIntVector(listOfEmptyCases); //vbag1 and vbag2 took the smallest and least recently empty cases 
@@ -220,7 +223,7 @@ int main(){
 
 
     cout << "testing VStorage::getEmptyCases" <<endl;
-    cout <<"showing the list of the empty cases expected to be empty" << endl;
+    cout <<"showing the indices of the empty cases expected to be empty" << endl;
 
     listOfEmptyCases = vmyStorage.getEmptyCases();
     printIntVector(listOfEmptyCases);
@@ -248,7 +251,7 @@ int main(){
     cout << " " << endl;
 
     cout << "testing VStorage::getEmptyCases" <<endl;
-    cout <<"showing the list of the empty cases expected to have one case" << endl;
+    cout <<"showing the indices of the empty cases expected to have one case" << endl;
 
     listOfEmptyCases = vmyStorage.getEmptyCases();
     printIntVector(listOfEmptyCases);
