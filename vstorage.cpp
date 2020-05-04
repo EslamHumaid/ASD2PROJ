@@ -33,7 +33,6 @@ VStorage::VStorage(size_t nb){
 
   _nbCases = nb;
   _filledCases = 0;
-  _usingCase = 0;
 
   //adding the cases to _casesVolumes and _emptyCases after giving them a random value for the volume
   for(int i = 0; i < _nbCases ; i++){
@@ -57,8 +56,6 @@ VStorage::VStorage(vector<pair<int,float>> list){
 
   _nbCases = 0;
   _filledCases = 0;
-  _usingCase = 0;
-
   int indOfCase =0;
 
   for(int i = 0; i < list.size();i++){ //going through each volume
@@ -93,7 +90,6 @@ VStorage::VStorage(vector<float> volume, vector<int>num){
 
   _nbCases = 0;
   _filledCases = 0;
-  _usingCase = 0;
 
   int indOfCase =0;
 
@@ -189,8 +185,7 @@ Ticket VStorage::deposit(Bagage &bagToAdd){
     _storage.insert(make_pair(T, caseToAdd));
 
 
-    //incressing the number of usingCase and filledCases
-    _usingCase++;
+    //incressing the number of  filledCases
     _filledCases++;
 
 

@@ -110,8 +110,6 @@ class VStorage{
     size_t _nbCases;
     //the number of occupied cases 
     size_t _filledCases;
-    //the number of cases that was used (not necessarily occupied at the moment)
-    size_t _usingCase;
     //vector containing the indices of the empty case in _casesVolumes, used to choose the oldest used case to fill first
     std::vector<int> _emptyCases;
     //A vector of the valume of eache case
