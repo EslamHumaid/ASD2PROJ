@@ -35,12 +35,12 @@ class Ticket{
     /**
      * @role: overriding the operator == (testing the equality of two objects of the class Ticket )
      * */
-    bool operator==(Ticket const& autre) const; 
+    bool operator==(const Ticket & autre) const; 
 
     /**
      * @role: overriding the operator != (testing the inequality of two objects of the class Ticket )
      * */
-    bool operator!=(Ticket const& autre) const; 
+    bool operator!=(const Ticket & autre) const; 
 
     /**
      * Specifying std::hash to the type ticket by defining the Hasher

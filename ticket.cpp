@@ -61,7 +61,7 @@ size_t Ticket::hash_code() const{
 /**
     * @role: overriding the operator ==  (testing the equality of two objects of the class Ticket )
 * */
-bool Ticket::operator==(Ticket const& autre) const{
+bool Ticket::operator==(const Ticket & autre) const{
     return _codeTicket == autre._codeTicket;
 }
 
@@ -69,7 +69,7 @@ bool Ticket::operator==(Ticket const& autre) const{
 /**
     * @role: overriding the operator != (testing the inequality of two objects of the class Ticket )
 **/
-bool Ticket::operator!=(Ticket const& autre) const{
+bool Ticket::operator!=(const Ticket & autre) const{
     return _codeTicket != autre._codeTicket;
 
     
